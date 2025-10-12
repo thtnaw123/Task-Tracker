@@ -6,6 +6,9 @@
 //
 
 import UIKit
+protocol TaskTableViewCellDelgate : NSObject {
+   func changeTaskStatusHandler(taskIndex: Int)
+}
 
 class TaskTableViewCell: UITableViewCell {
 
@@ -14,18 +17,22 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var addTaskButton: UIButton!
     
     static var identifier = "taskTableViewCell"
-
+    
+    var delgate:TaskTableViewCellDelgate?
+    
+    var targetTask: TaskModel! {
+        didSet {
+        taskLabel.text = targetTask.title
+        setUpCheckBox(isSelected: targetTask.isCompleted)
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-
-        setUpCheckBox(isSelected: false)
     }
     
     func setUpCheckBox(isSelected: Bool) {
         addTaskButton.isSelected = isSelected
-                    
         addTaskButton.setImage(ImageManager.shared.squareIcon, for: .normal)
         addTaskButton.setImage(ImageManager.shared.filledSquareIcon, for: .selected)
     }
@@ -33,16 +40,8 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func checkBoxClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        if sender.isSelected {
-            print("Checked")
-        } else {
-            print("unchecked")
-        }
+        delgate?.changeTaskStatusHandler(taskIndex: sender.tag)
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
     
 }

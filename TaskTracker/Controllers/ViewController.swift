@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController{
     
@@ -18,14 +19,15 @@ class ViewController: UIViewController{
     var addButton = UIButton(type:.system)
     
     var taskListTableView = UITableView()
-     
-    let items = ["Task1", "Task2", "Task3"]
-
+    
+    let taskViewModel = TaskViewModel()
+    
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 //        overrideUserInterfaceStyle = .dark
+        
         setBackgroundColor()
         setUpLogoImage()
         setUpUI()
@@ -108,7 +110,15 @@ class ViewController: UIViewController{
    
     
     @objc func addTask() {
+        let validator = Validator()
+        if validator.checkIfEmpty(taskTextField.text) {
+            return;
+        }
         
+        let newTask = TaskModel(title: taskTextField.text!, isCompleted:false)
+        taskViewModel.addNewTask(task: newTask)
+        taskListTableView.reloadData()
+        taskTextField.text = ""
     }
 
 

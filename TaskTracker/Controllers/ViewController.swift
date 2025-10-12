@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     
     var logoImageView = UIImageView()
     
@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     
     var addButton = UIButton(type:.system)
     
+    var taskListTableView = UITableView()
+     
+    let items = ["Task1", "Task2", "Task3"]
 
 
 
@@ -26,6 +29,7 @@ class ViewController: UIViewController {
         setBackgroundColor()
         setUpLogoImage()
         setUpUI()
+        setUpTableView()
     }
     
     func setBackgroundColor(){
@@ -81,6 +85,25 @@ class ViewController: UIViewController {
             
         ])
     }
+    
+    func setUpTableView(){
+           let nib = UINib(nibName: "TaskTableViewCell", bundle: nil)
+           taskListTableView.register(nib,
+                              forCellReuseIdentifier: TaskTableViewCell.identifier)
+           taskListTableView.delegate = self
+           taskListTableView.dataSource = self
+           taskListTableView.backgroundColor = ColorManager.shared.backgroundColor
+           
+           view.addSubview(taskListTableView)
+           taskListTableView.translatesAutoresizingMaskIntoConstraints = false
+           
+           NSLayoutConstraint.activate([
+               taskListTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+               taskListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+               taskListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+               taskListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 300)
+           ])
+       }
     
    
     

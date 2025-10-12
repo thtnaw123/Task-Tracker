@@ -23,6 +23,8 @@ class ViewController: UIViewController{
     let taskViewModel = TaskViewModel()
     
 
+    lazy var taskList = taskViewModel.getAllTasks()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,7 @@ class ViewController: UIViewController{
         setUpLogoImage()
         setUpUI()
         setUpTableView()
+        setUpTaskFilterView()
     }
     
     func setBackgroundColor(){
@@ -50,6 +53,30 @@ class ViewController: UIViewController{
             logoImageView.widthAnchor.constraint(equalToConstant: 100)
         ])
         
+    }
+    
+    func setUpTaskFilterView(){
+        let taskFilterView = TaskFilterView(viewController: self)
+
+        taskFilterView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskFilterView)
+        
+        NSLayoutConstraint.activate([
+            taskFilterView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            taskFilterView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            taskFilterView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            taskFilterView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    func sortTasksByName(){
+        taskList = taskViewModel.sortTasksByName()
+        taskListTableView.reloadData()
+    }
+    
+    func filterByTaskStatus(isCompleted: Bool){
+        taskList = taskViewModel.filterTasksByStatus(isCompleted: isCompleted)
+        taskListTableView.reloadData()
     }
     
     
@@ -117,6 +144,7 @@ class ViewController: UIViewController{
         
         let newTask = TaskModel(title: taskTextField.text!, isCompleted:false)
         taskViewModel.addNewTask(task: newTask)
+        taskList = taskViewModel.getAllTasks()
         taskListTableView.reloadData()
         taskTextField.text = ""
     }

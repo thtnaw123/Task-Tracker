@@ -10,14 +10,14 @@ import UIKit
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return taskViewModel.getAllTasks().count
+        return taskList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else{
             return UITableViewCell()
         }
-        let tasks = taskViewModel.getAllTasks()
+        let tasks = taskList
         cell.taskLabel?.text = tasks[indexPath.row].title
         cell.addTaskButton.tag = indexPath.row
         cell.targetTask = tasks[indexPath.row]

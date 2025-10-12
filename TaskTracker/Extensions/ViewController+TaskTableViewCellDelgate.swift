@@ -10,11 +10,10 @@ import Foundation
 extension ViewController: TaskTableViewCellDelgate {
     func changeTaskStatusHandler(taskIndex: Int) {
         let targetTask = taskViewModel.getAllTasks()[taskIndex]
-        if let tasksVariable = taskViewModel.toggleTaskStatus(taskId: targetTask.id) {
-            taskList = tasksVariable
+        if let tasksLocalVar = taskViewModel.toggleTaskStatus(taskId: targetTask.id) {
+            taskList = tasksLocalVar
         }
         taskListTableView.reloadData()
     }
-    
-    
+
 }

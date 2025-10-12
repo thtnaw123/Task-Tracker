@@ -19,9 +19,12 @@ class TaskTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.backgroundColor = ColorManager.shared.backgroundColor
 
-        addTaskButton.isSelected = false
+        setUpCheckBox(isSelected: false)
+    }
+    
+    func setUpCheckBox(isSelected: Bool) {
+        addTaskButton.isSelected = isSelected
                     
         addTaskButton.setImage(ImageManager.shared.squareIcon, for: .normal)
         addTaskButton.setImage(ImageManager.shared.filledSquareIcon, for: .selected)

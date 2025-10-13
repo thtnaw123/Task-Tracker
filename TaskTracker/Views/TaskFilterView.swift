@@ -29,10 +29,10 @@ class TaskFilterView: UIView {
     
     
     func setUpFilterView() {
-        filterTaskButton.setTitle("Filter Task", for: .normal)
-        sortButton.setTitle("Sort", for: .normal)
+        filterTaskButton.setImage(ImageManager.shared.filterIcon, for: .normal)
         filterTaskButton.addTarget(self, action: #selector(filterTasks), for: .touchUpInside)
         sortButton.addTarget(self, action: #selector(sortTasks), for: .touchUpInside)
+        sortButton.setImage(ImageManager.shared.sortIcon, for: .normal)
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually

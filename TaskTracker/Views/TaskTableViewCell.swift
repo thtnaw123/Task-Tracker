@@ -43,5 +43,15 @@ class TaskTableViewCell: UITableViewCell {
         delgate?.changeTaskStatusHandler(taskIndex: sender.tag)
     }
     
+    func hydrateCell(index:Int){
+        taskLabel?.text = targetTask.title
+        addTaskButton.tag = index
+        if targetTask.isCompleted {
+            taskLabel?.textColor = .gray
+        }else {
+            taskLabel?.textColor = ColorManager.shared.primaryColor
+        }
+    }
+    
     
 }

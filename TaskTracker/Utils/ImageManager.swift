@@ -16,5 +16,10 @@ class ImageManager {
     let squareIcon = UIImage(systemName: "square")
     let filledSquareIcon = UIImage(systemName: "checkmark.square.fill")
     
+    let lightIcon = UIImage(systemName: "light.max")
+    let darkIcon = UIImage(systemName: "moon")
+    
+    let sortIcon = UIImage(systemName: "arrow.up.arrow.down")
+    let filterIcon = UIImage(systemName: "arrow.right.filled.filter.arrow.right")
 }
 

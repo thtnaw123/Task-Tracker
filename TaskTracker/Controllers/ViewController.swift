@@ -15,12 +15,10 @@ class ViewController: UIViewController{
     let taskViewModel = TaskViewModel()
     
     lazy var taskList = taskViewModel.getAllTasks()
-
+    
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-//        overrideUserInterfaceStyle = .dark
-        
+        super.viewDidLoad()        
         setBackgroundColor()
         setUpTaskListHeaderView()
         setUpTaskFilterView()

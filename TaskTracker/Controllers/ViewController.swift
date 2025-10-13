@@ -10,19 +10,10 @@ import Foundation
 
 class ViewController: UIViewController{
     
-    var logoImageView = UIImageView()
-    
-    var stackView = UIStackView()
-    
-    var taskTextField = UITextField()
-    
-    var addButton = UIButton(type:.system)
-    
     var taskListTableView = UITableView()
     
     let taskViewModel = TaskViewModel()
     
-
     lazy var taskList = taskViewModel.getAllTasks()
 
 
@@ -31,28 +22,30 @@ class ViewController: UIViewController{
 //        overrideUserInterfaceStyle = .dark
         
         setBackgroundColor()
-        setUpLogoImage()
-        setUpUI()
-        setUpTableView()
+        setUpTaskListHeaderView()
         setUpTaskFilterView()
+        
     }
     
     func setBackgroundColor(){
         view.backgroundColor = ColorManager.shared.backgroundColor
     }
     
-    func setUpLogoImage(){
-        logoImageView = UIImageView(image: ImageManager.shared.logoImage)
-        logoImageView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(logoImageView)
+    
+    func setUpTaskListHeaderView(){
+        let taskListHeaderView = TaskListHeaderView(viewController: self)
+        taskListHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskListHeaderView)
         
         NSLayoutConstraint.activate([
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100)
+            taskListHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            taskListHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            taskListHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            taskListHeaderView.heightAnchor.constraint(equalToConstant: 200)
+
         ])
         
+        setUpTableView(taskListHeaderView:taskListHeaderView)
     }
     
     func setUpTaskFilterView(){
@@ -80,42 +73,7 @@ class ViewController: UIViewController{
     }
     
     
-    func setUpUI() {
-   
-        stackView.axis = .horizontal
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(stackView)
-        
-        taskTextField.placeholder = "Enter task"
-        taskTextField.textColor = .label
-        taskTextField.borderStyle = .roundedRect
-        taskTextField.layer.borderWidth = 1
-        taskTextField.layer.borderColor = ColorManager.shared.primaryColor?.cgColor
-        taskTextField.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(taskTextField)
-        
-        addButton.addTarget(self, action: #selector(addTask), for: .touchUpInside)
-        addButton.translatesAutoresizingMaskIntoConstraints = false
-        addButton.backgroundColor = ColorManager.shared.secondaryColor
-        let icon = ImageManager.shared.addTaskIcon
-        addButton.setImage(icon, for: .normal)
-        addButton.tintColor = ColorManager.shared.primaryColor
-        addButton.layer.cornerRadius = 8
-
-        
-        stackView.addArrangedSubview(addButton)
-        
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40)
-            
-        ])
-    }
-    
-    func setUpTableView(){
+    func setUpTableView(taskListHeaderView:TaskListHeaderView){
            let nib = UINib(nibName: "TaskTableViewCell", bundle: nil)
            taskListTableView.register(nib,
                               forCellReuseIdentifier: TaskTableViewCell.identifier)
@@ -127,7 +85,7 @@ class ViewController: UIViewController{
            taskListTableView.translatesAutoresizingMaskIntoConstraints = false
            
            NSLayoutConstraint.activate([
-               taskListTableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+               taskListTableView.topAnchor.constraint(equalTo: taskListHeaderView.bottomAnchor, constant: 40),
                taskListTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
                taskListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
                taskListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 300)
@@ -135,18 +93,17 @@ class ViewController: UIViewController{
        }
     
    
-    
-    @objc func addTask() {
+
+    func addNewTask(taskTitle: String?){
         let validator = Validator()
-        if validator.checkIfEmpty(taskTextField.text) {
+        if validator.checkIfEmpty(taskTitle) {
             return;
         }
         
-        let newTask = TaskModel(title: taskTextField.text!, isCompleted:false)
+        let newTask = TaskModel(title: taskTitle!, isCompleted:false)
         taskViewModel.addNewTask(task: newTask)
         taskList = taskViewModel.getAllTasks()
         taskListTableView.reloadData()
-        taskTextField.text = ""
     }
 
 

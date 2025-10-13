@@ -8,7 +8,6 @@ import Foundation
 
 class TaskViewModel {
     var taskList = TaskRepository.shared.taskDict
-    var ascendingSorted = false;
     
     func getAllTasks() -> [TaskModel] {
         return Array(taskList.values)
@@ -21,14 +20,12 @@ class TaskViewModel {
         taskList[task.id]=task
     }
     
-    func sortTasksByName() -> [TaskModel] {
+    func sortTasksByName(isAscending : Bool) -> [TaskModel] {
         let tasksArray : [TaskModel] = Array(taskList.values)
-        if(ascendingSorted){
-            ascendingSorted.toggle()
-            return  tasksArray.sorted(by: {$0.title > $1.title})
+        if isAscending {
+            return  tasksArray.sorted(by: {$0.title < $1.title})
         }else{
-            ascendingSorted.toggle()
-           return tasksArray.sorted(by: {$0.title < $1.title})
+           return tasksArray.sorted(by: {$0.title > $1.title})
         }
     }
     

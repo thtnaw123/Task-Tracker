@@ -48,31 +48,6 @@ class ViewController: UIViewController{
         setUpTableView(taskListHeaderView:taskListHeaderView)
     }
     
-    func setUpTaskFilterView(){
-        let taskFilterView = TaskFilterView(viewController: self)
-
-        taskFilterView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(taskFilterView)
-        
-        NSLayoutConstraint.activate([
-            taskFilterView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            taskFilterView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            taskFilterView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            taskFilterView.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    
-    func sortTasksByName(){
-        taskList = taskViewModel.sortTasksByName()
-        taskListTableView.reloadData()
-    }
-    
-    func filterByTaskStatus(isCompleted: Bool){
-        taskList = taskViewModel.filterTasksByStatus(isCompleted: isCompleted)
-        taskListTableView.reloadData()
-    }
-    
-    
     func setUpTableView(taskListHeaderView:TaskListHeaderView){
            let nib = UINib(nibName: "TaskTableViewCell", bundle: nil)
            taskListTableView.register(nib,
@@ -90,9 +65,32 @@ class ViewController: UIViewController{
                taskListTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
                taskListTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 300)
            ])
-       }
+    }
     
-   
+    func setUpTaskFilterView(){
+        let taskFilterView = TaskFilterView(viewController: self)
+
+        taskFilterView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(taskFilterView)
+        
+        NSLayoutConstraint.activate([
+            taskFilterView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            taskFilterView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            taskFilterView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            taskFilterView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    func sortTasksByName(isAscending: Bool){
+        taskList = taskViewModel.sortTasksByName(isAscending: isAscending)
+        taskListTableView.reloadData()
+    }
+    
+    func filterByTaskStatus(isCompleted: Bool){
+        taskList = taskViewModel.filterTasksByStatus(isCompleted: isCompleted)
+        taskListTableView.reloadData()
+    }
+    
 
     func addNewTask(taskTitle: String?){
         let validator = Validator()

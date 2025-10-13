@@ -14,6 +14,7 @@ class TaskFilterView: UIView {
    let sortButton = UIButton(type: .system)
    let stackView = UIStackView()
    var isCompleted: Bool = true
+   var isAscending: Bool = true
     
 
     init(viewController: ViewController) {
@@ -52,7 +53,8 @@ class TaskFilterView: UIView {
     }
     
     @objc func sortTasks() {
-        viewController.sortTasksByName()
+        isAscending ? viewController.sortTasksByName(isAscending: true): viewController.sortTasksByName(isAscending: false)
+        isAscending.toggle()
     }
     
     @objc func filterTasks() {

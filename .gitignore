@@ -3,6 +3,6 @@
 *.xcdebugger/
 
 .DS_Store
-
+.vscode
 
 

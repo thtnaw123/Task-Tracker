@@ -23,8 +23,5 @@ class TaskRepository {
                                   task3.id:task3,
                                   task4.id:task4,
                                   task5.id:task5]
-//    func allTasks() -> [Task]
-//    func addTask(_ task: Task)
-//    func updateTask(_ task: Task)
-//    func deleteTask(withId id: Int)
+
 }

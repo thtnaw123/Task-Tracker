@@ -12,4 +12,5 @@ class ColorManager{
     let backgroundColor = UIColor(named: "BackGround")
     let primaryColor = UIColor(named: "PrimaryColor")
     let secondaryColor = UIColor(named: "SecondaryColor")
+    let dimColor = UIColor(.gray)
 }

@@ -18,9 +18,11 @@ class TaskListHeaderView: UIView {
     
     var addButton = UIButton(type:.system)
     
+    var themeSwithcherButton = UIButton(type:.system)
+    
     init(viewController: ViewController) {
-           self.viewController = viewController
            super.init(frame: .zero)
+           self.viewController = viewController
            setUpLogoImage()
            setTaskAddFormUI()
     }
@@ -30,23 +32,39 @@ class TaskListHeaderView: UIView {
     }
     
     func setUpLogoImage(){
+        themeSwithcherButton.setImage(ImageManager.shared.darkIcon, for: .normal)
+        themeSwithcherButton.translatesAutoresizingMaskIntoConstraints = false
+        themeSwithcherButton.addTarget(self, action: #selector(changeTheme), for: .touchUpInside)
+        addSubview(themeSwithcherButton)
+        
         logoImageView = UIImageView(image: ImageManager.shared.logoImage)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logoImageView)
         
         NSLayoutConstraint.activate([
             logoImageView.centerXAnchor.constraint(equalTo:centerXAnchor),
-            logoImageView.topAnchor.constraint(equalTo:topAnchor, constant: 40),
+            logoImageView.topAnchor.constraint(equalTo:topAnchor, constant: 20),
             logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 100)
+            logoImageView.widthAnchor.constraint(equalToConstant: 100),
+            
+            
+            themeSwithcherButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 260),
+            themeSwithcherButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            themeSwithcherButton.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            themeSwithcherButton.heightAnchor.constraint(equalToConstant: 30),
         ])
         
+    }
+    
+    @objc func changeTheme(){
+        ThemeManager.shared.changeTheme()
+        ThemeManager.shared.changeThemeButtonIcon(button: themeSwithcherButton)
     }
     
     
    
     func setTaskAddFormUI() {
-   
+        
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
         stackView.spacing = 10
@@ -75,8 +93,8 @@ class TaskListHeaderView: UIView {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40)
-            
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40),
+            addButton.widthAnchor.constraint(equalToConstant:  60),
         ])
     }
     

@@ -8,8 +8,8 @@
 import Foundation
 
 
-struct TaskModel: Identifiable {
-    let id = UUID()
+struct TaskModel: Identifiable, Codable {
+    var id = UUID()
     var title: String
     var isCompleted: Bool
 }

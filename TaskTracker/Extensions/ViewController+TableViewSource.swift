@@ -17,12 +17,11 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else{
             return UITableViewCell()
         }
+        
         let tasks = taskList
-        cell.taskLabel?.text = tasks[indexPath.row].title
-        cell.addTaskButton.tag = indexPath.row
         cell.targetTask = tasks[indexPath.row]
         cell.delgate = self
-        
+        cell.hydrateCell(index: indexPath.row)
         return cell
     }
 }

@@ -18,7 +18,6 @@ class WindowManager{
         window.rootViewController = ViewController()
         window.windowScene = windowScene
         window.makeKeyAndVisible()
-        
         return window
     }
     

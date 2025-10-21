@@ -57,12 +57,14 @@ class TaskViewModel {
         }
         if let currentIndex = currentTasks.firstIndex(where: { $0.id == taskId }) {
             currentTasks[currentIndex].isCompleted.toggle()
-            taskList[currentIndex].isCompleted.toggle()
-            TaskRepository.shared.taskDict[taskId] = taskList[currentIndex]
-            TaskRepository.shared.saveAllTask(taskList)
-            
             PrintDebug.printDebug("\(taskId) complete state changed")
 
+        }
+        
+        if let listIndex = taskList.firstIndex(where: {$0.id == taskId}){
+            taskList[listIndex].isCompleted.toggle()
+            TaskRepository.shared.taskDict[taskId] = taskList[listIndex]
+            TaskRepository.shared.saveAllTask(taskList)
         }
         
         return currentTasks

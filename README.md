@@ -1,4 +1,3 @@
-Three students contributed for this app
 
  A - created the ui for the textfield, button and list of tasks.
 

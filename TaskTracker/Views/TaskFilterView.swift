@@ -12,9 +12,10 @@ class TaskFilterView: UIView {
    var viewController = ViewController()
    let filterTaskButton = UIButton(type: .system)
    let sortButton = UIButton(type: .system)
+   let resetButton = UIButton(type: .system)
    let stackView = UIStackView()
    var isCompleted: Bool = true
-   var isAscending: Bool = true
+   var isAscending: Bool = false
     
 
     init(viewController: ViewController) {
@@ -30,15 +31,20 @@ class TaskFilterView: UIView {
     
     func setUpFilterView() {
         filterTaskButton.setImage(ImageManager.shared.filterIcon, for: .normal)
-        filterTaskButton.addTarget(self, action: #selector(filterTasks), for: .touchUpInside)
-        sortButton.addTarget(self, action: #selector(sortTasks), for: .touchUpInside)
         sortButton.setImage(ImageManager.shared.sortIcon, for: .normal)
+        resetButton.setImage(ImageManager.shared.resetIcon, for: .normal)
+
+        resetButton.addTarget(self, action: #selector(resetTasks), for: .touchUpInside)
+        sortButton.addTarget(self, action: #selector(sortTasks), for: .touchUpInside)
+        filterTaskButton.addTarget(self, action: #selector(filterTasks), for: .touchUpInside)
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 8
+        
         stackView.addArrangedSubview(filterTaskButton)
         stackView.addArrangedSubview(sortButton)
+        stackView.addArrangedSubview(resetButton)
         
         addSubview(stackView)
 
@@ -53,12 +59,17 @@ class TaskFilterView: UIView {
     }
     
     @objc func sortTasks() {
-        isAscending ? viewController.sortTasksByName(isAscending: true): viewController.sortTasksByName(isAscending: false)
+        viewController.sortTasksByName(isAscending: isAscending)
         isAscending.toggle()
     }
     
+    @objc func resetTasks() {
+        viewController.resetAllTasks()
+    }
+    
+    
     @objc func filterTasks() {
-        isCompleted ? viewController.filterByTaskStatus(isCompleted: true): viewController.filterByTaskStatus(isCompleted: false)
+        viewController.filterByTaskStatus(isCompleted: isCompleted)
         isCompleted.toggle()
     }
   

@@ -7,52 +7,77 @@
 import Foundation
 
 class TaskViewModel {
-    var taskList = TaskRepository.shared.taskDict
-    
-    func getAllTasks() -> [TaskModel] {
-        return Array(taskList.values)
+    var taskList : [TaskModel]  = []
+    var currentTasks : [TaskModel] = []
+    var taskCount: Int { currentTasks.count }
+
+    init(){
+        initRepository()
     }
     
+    func initRepository(){
+        if TaskRepository.shared.getTasks().isEmpty{
+             TaskRepository.shared.initList(taskList:TaskRepository.shared.taskListSeedData)
+        }
+        taskList = TaskRepository.shared.getTasks()
+        TaskRepository.shared.taskDict = Dictionary(uniqueKeysWithValues: taskList.map { ($0.id, $0) })
+        currentTasks = taskList
+    }
+    
+    var getCurrentTasks: [TaskModel]  { currentTasks }
+    var getAllTaskList : [TaskModel] {taskList}
     func addNewTask(task : TaskModel) {
         if checkIfTaskExist(taskId:task.id){
-            return;
+            return
         }
-        taskList[task.id]=task
+        TaskRepository.shared.taskDict[task.id] = task
+        taskList.append(task)
+        currentTasks = taskList
+        TaskRepository.shared.saveAllTask(taskList)
     }
     
     func sortTasksByName(isAscending : Bool) -> [TaskModel] {
-        let tasksArray : [TaskModel] = Array(taskList.values)
         if isAscending {
-            return  tasksArray.sorted(by: {$0.title < $1.title})
+            currentTasks = currentTasks.sorted(by: {$0.title < $1.title})
+            return  currentTasks
         }else{
-           return tasksArray.sorted(by: {$0.title > $1.title})
+            currentTasks = currentTasks.sorted(by: {$0.title > $1.title})
+           return currentTasks
         }
     }
     
     func filterTasksByStatus(isCompleted : Bool) -> [TaskModel] {
-        let tasksArray : [TaskModel] = Array(taskList.values)
-        return tasksArray.filter({$0.isCompleted == isCompleted})
+        currentTasks = taskList.filter{$0.isCompleted == isCompleted}
+        return currentTasks
     }
     
     func toggleTaskStatus(taskId : UUID)-> [TaskModel]? {
-        if var task = taskList[taskId]{
-            task.isCompleted.toggle()
-            taskList[taskId] = task
-            return Array(taskList.values)
+        guard checkIfTaskExist(taskId: taskId) else {
+            return nil
         }
-        return nil
+        if let currentIndex = currentTasks.firstIndex(where: { $0.id == taskId }) {
+            currentTasks[currentIndex].isCompleted.toggle()
+            taskList[currentIndex].isCompleted.toggle()
+            TaskRepository.shared.taskDict[taskId] = taskList[currentIndex]
+            TaskRepository.shared.saveAllTask(taskList)
+            
+            PrintDebug.printDebug("\(taskId) complete state changed")
+
+        }
+        
+        return currentTasks
     }
     
-    func getAllTasksCount() -> Int {
-        return taskList.count
+    func getTaskById(taskId : UUID) -> TaskModel? {
+        return taskList.first{$0.id == taskId}
     }
+    
     
     func checkIfTaskExist(taskId : UUID) -> Bool {
-        if let _ = taskList[taskId] {
-            return true
-        }
-        return false
+        return TaskRepository.shared.taskDict[taskId] != nil
     }
     
     
 }
+
+

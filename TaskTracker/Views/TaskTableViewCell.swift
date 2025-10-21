@@ -7,7 +7,7 @@
 
 import UIKit
 protocol TaskTableViewCellDelgate : NSObject {
-   func changeTaskStatusHandler(taskIndex: Int)
+   func changeTaskStatusHandler(taskId: UUID)
 }
 
 class TaskTableViewCell: UITableViewCell {
@@ -40,14 +40,14 @@ class TaskTableViewCell: UITableViewCell {
     @IBAction func checkBoxClicked(_ sender: UIButton) {
         sender.isSelected.toggle()
         
-        delgate?.changeTaskStatusHandler(taskIndex: sender.tag)
+        delgate?.changeTaskStatusHandler(taskId: targetTask.id)
     }
     
     func hydrateCell(index:Int){
         taskLabel?.text = targetTask.title
         addTaskButton.tag = index
         if targetTask.isCompleted {
-            taskLabel?.textColor = .gray
+            taskLabel?.textColor = ColorManager.shared.dimColor
         }else {
             taskLabel?.textColor = ColorManager.shared.primaryColor
         }

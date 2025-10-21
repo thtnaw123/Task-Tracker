@@ -14,7 +14,7 @@ class ViewController: UIViewController{
     
     let taskViewModel = TaskViewModel()
     
-    lazy var taskList = taskViewModel.getAllTasks()
+    lazy var taskList = taskViewModel.getCurrentTasks
     
 
     override func viewDidLoad() {
@@ -84,6 +84,11 @@ class ViewController: UIViewController{
         taskListTableView.reloadData()
     }
     
+    func resetAllTasks(){
+        taskList = taskViewModel.getAllTaskList
+        taskListTableView.reloadData()
+    }
+    
     func filterByTaskStatus(isCompleted: Bool){
         taskList = taskViewModel.filterTasksByStatus(isCompleted: isCompleted)
         taskListTableView.reloadData()
@@ -98,7 +103,7 @@ class ViewController: UIViewController{
         
         let newTask = TaskModel(title: taskTitle!, isCompleted:false)
         taskViewModel.addNewTask(task: newTask)
-        taskList = taskViewModel.getAllTasks()
+        taskList = taskViewModel.getCurrentTasks
         taskListTableView.reloadData()
     }
 

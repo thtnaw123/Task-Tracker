@@ -21,5 +21,6 @@ class ImageManager {
     
     let sortIcon = UIImage(systemName: "arrow.up.arrow.down")
     let filterIcon = UIImage(systemName: "arrow.right.filled.filter.arrow.right")
+    let resetIcon = UIImage(systemName: "arrow.trianglehead.rectanglepath")
 }
 

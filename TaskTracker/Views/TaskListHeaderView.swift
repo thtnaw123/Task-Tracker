@@ -21,8 +21,8 @@ class TaskListHeaderView: UIView {
     var themeSwithcherButton = UIButton(type:.system)
     
     init(viewController: ViewController) {
-           self.viewController = viewController
            super.init(frame: .zero)
+           self.viewController = viewController
            setUpLogoImage()
            setTaskAddFormUI()
     }
@@ -51,7 +51,6 @@ class TaskListHeaderView: UIView {
             themeSwithcherButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 260),
             themeSwithcherButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
             themeSwithcherButton.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            themeSwithcherButton.widthAnchor.constraint(equalToConstant: 30),
             themeSwithcherButton.heightAnchor.constraint(equalToConstant: 30),
         ])
         
@@ -65,7 +64,6 @@ class TaskListHeaderView: UIView {
     
    
     func setTaskAddFormUI() {
-   
         
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
@@ -96,6 +94,7 @@ class TaskListHeaderView: UIView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40),
+            addButton.widthAnchor.constraint(equalToConstant:  60),
         ])
     }
     

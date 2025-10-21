@@ -17,6 +17,7 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier, for: indexPath) as? TaskTableViewCell else{
             return UITableViewCell()
         }
+        
         let tasks = taskList
         cell.targetTask = tasks[indexPath.row]
         cell.delgate = self

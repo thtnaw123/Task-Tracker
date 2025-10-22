@@ -22,7 +22,6 @@ class ViewController: UIViewController{
         setBackgroundColor()
         setUpTaskListHeaderView()
         setUpTaskFilterView()
-        
     }
     
     func setBackgroundColor(){

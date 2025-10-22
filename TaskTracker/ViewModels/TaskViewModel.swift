@@ -26,6 +26,7 @@ class TaskViewModel {
     
     var getCurrentTasks: [TaskModel]  { currentTasks }
     var getAllTaskList : [TaskModel] {taskList}
+    
     func addNewTask(task : TaskModel) {
         if checkIfTaskExist(taskId:task.id){
             return
@@ -38,11 +39,9 @@ class TaskViewModel {
     
     func sortTasksByName(isAscending : Bool) -> [TaskModel] {
         if isAscending {
-            currentTasks = currentTasks.sorted(by: {$0.title < $1.title})
-            return  currentTasks
+            return  currentTasks.sorted(by: {$0.title < $1.title})
         }else{
-            currentTasks = currentTasks.sorted(by: {$0.title > $1.title})
-           return currentTasks
+           return currentTasks.sorted(by: {$0.title > $1.title})
         }
     }
     
@@ -58,7 +57,6 @@ class TaskViewModel {
         if let currentIndex = currentTasks.firstIndex(where: { $0.id == taskId }) {
             currentTasks[currentIndex].isCompleted.toggle()
             PrintDebug.printDebug("\(taskId) complete state changed")
-
         }
         
         if let listIndex = taskList.firstIndex(where: {$0.id == taskId}){
@@ -66,7 +64,6 @@ class TaskViewModel {
             TaskRepository.shared.taskDict[taskId] = taskList[listIndex]
             TaskRepository.shared.saveAllTask(taskList)
         }
-        
         return currentTasks
     }
     

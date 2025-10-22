@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		85C67C422EA7B67500C60615 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 85E928572E9B824800BDC19B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 85E9285E2E9B824800BDC19B;
+			remoteInfo = TaskTracker;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		85C67C3E2EA7B67500C60615 /* TaskTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaskTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85E9285F2E9B824800BDC19B /* TaskTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TaskTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +32,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		85C67C3F2EA7B67500C60615 /* TaskTrackerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TaskTrackerTests;
+			sourceTree = "<group>";
+		};
 		85E928612E9B824800BDC19B /* TaskTracker */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +48,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		85C67C3B2EA7B67500C60615 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85E9285C2E9B824800BDC19B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				85E928612E9B824800BDC19B /* TaskTracker */,
+				85C67C3F2EA7B67500C60615 /* TaskTrackerTests */,
 				85E928602E9B824800BDC19B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				85E9285F2E9B824800BDC19B /* TaskTracker.app */,
+				85C67C3E2EA7B67500C60615 /* TaskTrackerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		85C67C3D2EA7B67500C60615 /* TaskTrackerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 85C67C442EA7B67500C60615 /* Build configuration list for PBXNativeTarget "TaskTrackerTests" */;
+			buildPhases = (
+				85C67C3A2EA7B67500C60615 /* Sources */,
+				85C67C3B2EA7B67500C60615 /* Frameworks */,
+				85C67C3C2EA7B67500C60615 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				85C67C432EA7B67500C60615 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				85C67C3F2EA7B67500C60615 /* TaskTrackerTests */,
+			);
+			name = TaskTrackerTests;
+			packageProductDependencies = (
+			);
+			productName = TaskTrackerTests;
+			productReference = 85C67C3E2EA7B67500C60615 /* TaskTrackerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		85E9285E2E9B824800BDC19B /* TaskTracker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 85E928752E9B824B00BDC19B /* Build configuration list for PBXNativeTarget "TaskTracker" */;
@@ -90,9 +138,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1640;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					85C67C3D2EA7B67500C60615 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 85E9285E2E9B824800BDC19B;
+					};
 					85E9285E2E9B824800BDC19B = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -113,11 +165,19 @@
 			projectRoot = "";
 			targets = (
 				85E9285E2E9B824800BDC19B /* TaskTracker */,
+				85C67C3D2EA7B67500C60615 /* TaskTrackerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		85C67C3C2EA7B67500C60615 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85E9285D2E9B824800BDC19B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +188,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		85C67C3A2EA7B67500C60615 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		85E9285B2E9B824800BDC19B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +204,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		85C67C432EA7B67500C60615 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 85E9285E2E9B824800BDC19B /* TaskTracker */;
+			targetProxy = 85C67C422EA7B67500C60615 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		85C67C452EA7B67500C60615 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = assignmentExs.TaskTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TaskTracker";
+			};
+			name = Debug;
+		};
+		85C67C462EA7B67500C60615 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = assignmentExs.TaskTrackerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TaskTracker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TaskTracker";
+			};
+			name = Release;
+		};
 		85E928762E9B824B00BDC19B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -320,6 +437,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		85C67C442EA7B67500C60615 /* Build configuration list for PBXNativeTarget "TaskTrackerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				85C67C452EA7B67500C60615 /* Debug */,
+				85C67C462EA7B67500C60615 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		85E9285A2E9B824800BDC19B /* Build configuration list for PBXProject "TaskTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

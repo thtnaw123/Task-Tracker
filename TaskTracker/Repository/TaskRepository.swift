@@ -17,15 +17,13 @@ class TaskRepository {
     let task2 = TaskModel(title: "Task 2", isCompleted: false)
     let task3 = TaskModel(title: "Task 3", isCompleted: false)
     let task4 = TaskModel(title: "Task 4", isCompleted: false)
-    let task5 = TaskModel(title: "Task 5", isCompleted: false)
 
     
     lazy var taskDict:[UUID:TaskModel] = [task1.id:task1,
                                   task2.id:task2,
                                   task3.id:task3,
-                                  task4.id:task4,
-                                  task5.id:task5]
-    lazy var taskListSeedData:[TaskModel] = [task1, task2, task3, task4, task5]
+                                  task4.id:task4]
+    lazy var taskListSeedData:[TaskModel] = [task1, task2, task3, task4]
 
     
     func initList(taskList: [TaskModel]) {

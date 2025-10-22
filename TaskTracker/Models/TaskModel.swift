@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct TaskModel: Identifiable, Codable {
+struct TaskModel: Identifiable, Codable,Equatable {
     var id = UUID()
     var title: String
     var isCompleted: Bool

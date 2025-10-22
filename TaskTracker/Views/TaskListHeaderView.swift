@@ -76,6 +76,7 @@ class TaskListHeaderView: UIView {
         taskTextField.borderStyle = .roundedRect
         taskTextField.layer.borderWidth = 1
         taskTextField.layer.borderColor = ColorManager.shared.primaryColor?.cgColor
+        taskTextField.accessibilityIdentifier="new_task_field"
         taskTextField.translatesAutoresizingMaskIntoConstraints = false
         stackView.addArrangedSubview(taskTextField)
         
@@ -84,6 +85,7 @@ class TaskListHeaderView: UIView {
         addButton.backgroundColor = ColorManager.shared.secondaryColor
         let icon = ImageManager.shared.addTaskIcon
         addButton.setImage(icon, for: .normal)
+        addButton.accessibilityIdentifier="add_task_button"
         addButton.tintColor = ColorManager.shared.primaryColor
         addButton.layer.cornerRadius = 8
 

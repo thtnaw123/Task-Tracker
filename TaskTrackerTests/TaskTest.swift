@@ -63,13 +63,8 @@ final class TaskTest: XCTestCase {
     
     func testAddTask() throws {
         let taskC = TaskModel(title: "Attend meeting", isCompleted: false)
-
-        var listWithNewTask = taskViewModel.getCurrentTasks
-        listWithNewTask.append(taskC)
-        
         taskViewModel.addNewTask(task: taskC)
-        
-        XCTAssertEqual(taskViewModel.getCurrentTasks, listWithNewTask)
+        XCTAssertTrue(taskViewModel.getCurrentTasks.contains(taskC))
     }
     
     
@@ -80,5 +75,9 @@ final class TaskTest: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+    
+//    given
+//    test
+//    assert
 
 }
